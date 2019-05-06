@@ -91,6 +91,26 @@ class Content extends Component {
         return Math.round(value * multiplier) / multiplier
     }
 
+    checkAll = () => {
+        let checked = {}
+        AppStore.people.forEach(person => {
+            checked[person.name] = true
+        })
+        this.setState({
+            checked: checked
+        })
+    }
+
+    unCheckAll = () => {
+        let checked = {}
+        AppStore.people.forEach(person => {
+            checked[person.name] = false
+        })
+        this.setState({
+            checked: checked
+        })
+    }
+
     render() {
         return (
             <div>
@@ -149,6 +169,12 @@ class Content extends Component {
                     <CardActions>
                         <Button type='submit' size='large' color='secondary'>
                             Add
+                        </Button>
+                        <Button onClick={this.checkAll} size='large' color='secondary'>
+                            Select All
+                        </Button>
+                        <Button onClick={this.unCheckAll} size='large' color='secondary'>
+                            Unselect all
                         </Button>
                     </CardActions>
                     </form>
